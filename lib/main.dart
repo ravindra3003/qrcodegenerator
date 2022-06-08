@@ -40,7 +40,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   TextEditingController textEditingController = TextEditingController();
 
-  String textToConvert = "navoki.com";
+  String textToConvert = "";
   String qrType = AppConstant.dropDownList.first;
 
   GlobalKey imageCaptureKey = GlobalKey();
