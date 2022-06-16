@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 InputDecoration(border: InputBorder.none),
                           )),
                       Padding(padding: const EdgeInsets.all(10.0)),
-                      RaisedButton(
+                      MaterialButton(
                         onPressed: () {
                           if (qrType == AppConstant.dropDownList[1]) {
                             textToConvert = "tel:${textEditingController.text}";
