@@ -49,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.blueGrey,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
@@ -89,6 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             decoration:
                                 InputDecoration(border: InputBorder.none),
                           )),
+                      Padding(padding: const EdgeInsets.all(10.0)),
                       RaisedButton(
                         onPressed: () {
                           if (qrType == AppConstant.dropDownList[1]) {
@@ -98,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
                           setState(() {});
                         },
-                        color: Colors.green,
+                        color: Colors.blueGrey,
                         child: Text(
                           "CONVERT",
                           style: TextStyle(color: Colors.white),
@@ -115,6 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
+                    Padding(padding: const EdgeInsets.all(10.0)),
                     RepaintBoundary(
                       key: imageCaptureKey,
                       child: Container(
@@ -126,23 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        "${AppConstant.appDirectory}\\${AppConstant.imageFolder}",
-                        style: TextStyle(fontSize: 10),
-                      ),
-                    ),
-                    RaisedButton(
-                      onPressed: () {
-                        _captureAndSavePng();
-                      },
-                      color: Colors.green,
-                      child: Text(
-                        "SAVE",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    )
+                    Padding(padding: const EdgeInsets.all(10.0)),
                   ],
                 ),
               )),
@@ -150,29 +136,5 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       // This trailing comma makes auto-formatting nicer for build methods.
     );
-  }
-
-  void _captureAndSavePng() async {
-    print('object');
-    try {
-      RenderRepaintBoundary boundary =
-          imageCaptureKey.currentContext.findRenderObject();
-      var image = await boundary.toImage();
-      ByteData byteData = await image.toByteData(format: ImageByteFormat.png);
-      Uint8List pngBytes = byteData.buffer.asUint8List();
-
-      String filename = "${DateTime.now().millisecondsSinceEpoch}.png";
-
-      String filePath =
-          "${AppConstant.appDirectory}\\${AppConstant.imageFolder}\\$filename";
-      File file = new File(filePath);
-      file.create(recursive: true);
-      await file.writeAsBytes(pngBytes);
-      print(filePath);
-      print(filename);
-      print(file);
-    } catch (e) {
-      print(e);
-    }
   }
 }
