@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -75,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           value: qrType,
                           isExpanded: true,
                           onChanged: (data) {
-                            qrType = data;
+                            qrType = data.toString();
                             setState(() {});
                           }),
                       Container(
